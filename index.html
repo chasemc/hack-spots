@@ -69,7 +69,7 @@
     <script id="latestSpot" type="text/html">
         {{#rows}}
             <h4 class="fauxButton">MOST RECENT SPOT</h4>
-            <h2>{{name}}</h2>
+            <h2>{{Sample}}</h2>
             <p class="colorText">{{address}}<p>
             <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
@@ -95,7 +95,7 @@
     <script id="selectedSpot" type="text/html">
         {{#rows}}
             <h4 class="fauxButton">SELECTED SPOT</h4>
-            <h2>{{name}}</h2>
+            <h2>{{Sample}}</h2>
             <p class="colorText">{{address}}<p>
             <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
@@ -133,13 +133,13 @@
 
             // create geoJSON with coordinates and other
             // useful bits from the original data
-            var optionsJSON = ["name", "address", "city", "rowNumber"]
+            var optionsJSON = ["Sample", "address", "city", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }}</h2>", true)
+            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ Sample }}</h2>", true)
 
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
@@ -176,7 +176,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+                    if (!row.lat || !row.long || !row.Sample || !row.address || !row.city || !row.state ) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
