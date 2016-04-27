@@ -59,9 +59,9 @@
 
     <script id="hackSpotsTable" type="text/html">
         <table>
-            <tr><th class="tHeader">Sample</th><th class="tHeader">Taxanomic_Identification</th>
+            <tr><th class="tHeader">Sample</th><th class="tHeader">state</th><th class="tHeader">City</th><th class="tHeader">State</th><th class="tHeader">Country</th><th class="">Elsewhere</th></tr>
             {{#rows}}
-                <tr id="{{rowNumber}}" class="spotRow"><td>{{Sample}}</td><td>{{Taxanomic_Identification}}}</td><td>
+                <tr id="{{rowNumber}}" class="spotRow"><td>{{Sample}}</td><td>{{address}}</td><td>{{city}}</td><td>{{state}}</td><td>{{country}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
             {{/rows}}
         </table>
     </script>
@@ -81,7 +81,10 @@
                 <li><span class="category">Brewing:</span> {{brewing}}</li>
                 <li><span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a></li>
             </ul>
-            
+            <ul>
+                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
+                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+            </ul>
         {{/rows}}
     </script>
 
@@ -93,17 +96,20 @@
         {{#rows}}
             <h4 class="fauxButton">SELECTED SPOT</h4>
             <h2>{{Sample}}</h2>
-            <p class="colorText">{{Collection_Date}}<p>
+            <p class="colorText">{{address}}<p>
             <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
-                <li><span class="category">Wifi:</span> {{Collection_Date}}</li>
+                <li><span class="category">Wifi:</span> {{wifipassword}}</li>
                 <li><span class="category">Outlets:</span> {{outlets}}</li>
                 <li><span class="category">Couch:</span> {{couch}}</li>
                 <li><span class="category">Large Table:</span> {{largetable}}</li>
                 <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
                 <li><span class="category">Brewing:</span> {{brewing}}</li>
             </ul>
-           
+            <ul>
+                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
+                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+            </ul>
         {{/rows}}
     </script>
 
@@ -144,7 +150,7 @@
             })
             // set it and pan to it
             $('#latestSpot').html(latestSpot)
-            map.setView([theLatestSpot.Latitude, theLatestSpot.Longitude], 14)
+            map.setView([theLatestSpot.lat, theLatestSpot.long], 14)
 
             // when someone clicks on a row, highlight it and
             // re-center the map
@@ -170,7 +176,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.Latitude || !row.Longitude || !row.Sample || !row.Site || !row.Diver || !row.Collection_Date ) return
+                    if (!row.lat || !row.long || !row.Sample || !row.address || !row.city || !row.state ) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
