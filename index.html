@@ -71,10 +71,16 @@
             <h4 class="fauxButton">MOST RECENT SPOT</h4>
             <h2>{{Sample}}</h2>
             <p class="colorText">{{address}}<p>
-            <p class="colorText">{{Diver}}</p>
+            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
-                <li><span class="category">Wifi:</span> {{Diver}}</li>
-               </ul>
+                <li><span class="category">Wifi:</span> {{wifipassword}}</li>
+                <li><span class="category">Outlets:</span> {{outlets}}</li>
+                <li><span class="category">Couch:</span> {{couch}}</li>
+                <li><span class="category">Large Table:</span> {{largetable}}</li>
+                <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
+                <li><span class="category">Brewing:</span> {{brewing}}</li>
+                <li><span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a></li>
+            </ul>
             
         {{/rows}}
     </script>
@@ -90,8 +96,13 @@
             <p class="colorText">{{Collection_Date}}<p>
             <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
-                <li><span class="category">Sample:</span> {{Sample}}</li>
-                </ul>
+                <li><span class="category">Wifi:</span> {{Collection_Date}}</li>
+                <li><span class="category">Outlets:</span> {{outlets}}</li>
+                <li><span class="category">Couch:</span> {{couch}}</li>
+                <li><span class="category">Large Table:</span> {{largetable}}</li>
+                <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
+                <li><span class="category">Brewing:</span> {{brewing}}</li>
+            </ul>
            
         {{/rows}}
     </script>
@@ -116,7 +127,7 @@
 
             // create geoJSON with coordinates and other
             // useful bits from the original data
-            var optionsJSON = ["Sample",rowNumber"]
+            var optionsJSON = ["Sample", "address", "city", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
@@ -151,6 +162,19 @@
                 var selectedCoords = [dataElement[0].lat, dataElement[0].long]
                 map.setView(selectedCoords, 14)
             })
+
+            // so that the first map and info that loads
+            // is complete and doesn't show rows that are
+            // actively being edited by folk
+            function findLatestCompleteSpot(data) {
+                var latestCompleteSpot = []
+                var startWithLatestRow = data.reverse()
+                startWithLatestRow.forEach(function(row){
+                    if (!row.Latitude || !row.Longitude || !row.Sample || !row.Site || !row.Diver || !row.Collection_Date ) return
+                    else latestCompleteSpot.push(row)
+                })
+                return latestCompleteSpot[0]
+            }
 
             // Add click listener to the markerLayer
             markerLayer.on('click', function(e) {
