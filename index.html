@@ -13,7 +13,7 @@
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic'>
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700'>
         <link media="screen" rel="stylesheet" type="text/css" href="css/style.css">
-        <link media="screen" rel="stylesheet" type="text/css" href="css/Site.css">
+        <link media="screen" rel="stylesheet" type="text/css" href="css/site.css">
         <link rel="stylesheet" href="css/MarkerCluster.css" />
         <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
     </head>
@@ -150,7 +150,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.sample || !row.address || !row.Site || !row.state ) return
+                    if (!row.lat || !row.long || !row.name || !row.address || !row.Site || !row.state ) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
