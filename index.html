@@ -90,9 +90,10 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             var gData
-            var URL = "1OItpEEfhGc364f4S58p9lggf87pFdZ2fccrD-WMqssY"
+            var URL = "15gLjnfbwJBYjf081szzHvC-LM4FuTWSaEZmmJoqlNwI"
                 Tabletop.init({ key: URL, callback: showInfo, simpleSheet: true })
         })
+
         // so long, so messy
         function showInfo(gData) {
             tableOptions = {
@@ -103,14 +104,17 @@
             // make the table, and the search bar
             Sheetsee.makeTable(tableOptions)
             Sheetsee.initiateTableFilter(tableOptions)
+
             // create geoJSON with coordinates and other
             // useful bits from the original data
             var optionsJSON = ["name", "lat", "long", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
             var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }}</h2>", true)
+
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
             // someone is currently editing spreadsheet)
@@ -121,6 +125,7 @@
             // set it and pan to it
             $('#latestSpot').html(latestSpot)
             map.setView([theLatestSpot.lat, theLatestSpot.long], 14)
+
             // when someone clicks on a row, highlight it and
             // re-center the map
             // TODO show popup, change marker color
@@ -137,6 +142,7 @@
                 var selectedCoords = [dataElement[0].lat, dataElement[0].long]
                 map.setView(selectedCoords, 14)
             })
+
             // so that the first map and info that loads
             // is complete and doesn't show rows that are
             // actively being edited by folk
@@ -149,6 +155,7 @@
                 })
                 return latestCompleteSpot[0]
             }
+
             // Add click listener to the markerLayer
             markerLayer.on('click', function(e) {
                 // clear any selected rows
@@ -169,6 +176,7 @@
                 $('#latestSpot').css("display", "none")
                 $('#selectedSpot').html(selectedSpot).css("display", "inline")
             })
+
             // reset the map, zoom out, and recenter on 0,0
             $('.resetMap').click(function() {
                 $('.spotRow').removeClass("selectedRow")
@@ -176,16 +184,19 @@
                 $('#selectedSpot').css("display", "none")
                 map.setView([0,0], 1)
             })
+
             // find total number of spots added
             var theNumberofSpots = Sheetsee.ich.theNumberofSpots({
                 numberOfSpots: gData.length
             })
             $('#theNumberofSpots').html(theNumberofSpots)
+
             if(window.location.hash) {
                 $('#tableFilter').val(window.location.hash.substring(1)).keyup()
                 $('.spotRow').first().click()
             }
         }
+
         $(document).on('keyup', '#tableFilter', function() {
             window.location.hash = $(this).val()
             $('.spotRow').first().click()
