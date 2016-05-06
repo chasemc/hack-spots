@@ -22,7 +22,7 @@
         <h1>Great Lakes Sponge Collections</h1>
         <div>
             <ul class="nav">
-                <li><strong>Updated in real-time as samples are logged </strong></li>
+                <li><strong>Map updates in real-time as samples are logged </strong></li>
                 <li><a href="http://btmurphy.people.uic.edu/Murphylab/Murphy_Lab.html">More info at: Murphy Lab @ UIC</a> -</li>
 
             </ul>
@@ -57,7 +57,7 @@
         <table>
             <tr><th class="tHeader">Sample</th><th class="tHeader">Taxonomy</th><th class="tHeader">Place</th><th class="tHeader">Club</th><th class="tHeader"Number</th><th class="">Elsewhere</th></tr>
             {{#rows}}
-                <tr id="{{rowNumber}}" class="spotRow"><td>{{sample}}</td><td>{{taxonomy}}</td><td>{{place}}</td><td>{{club}}</td><td>{{number}}</td><td><a class="button" href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
+                <tr id="{{rowNumber}}" class="spotRow"><td>{{sample}}</td><td>{{taxonomy}}</td><td>{{place}}</td><td>{{club}}</td><td>{{number}}</td><td><a class="button" href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">G Map</a> </td></tr>
             {{/rows}}
         </table>
     </script>
@@ -74,8 +74,7 @@
                 <li><span class="category">Diver Notes:</span> {{number}}</li>
             </ul>
             <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+                <li><a href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">View in Google Maps</a></li>
             </ul>
         {{/rows}}
     </script>
@@ -97,8 +96,7 @@
                 <li><span class="category">Diver Notes:</span> {{number}}</li>
             </ul>
             <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+                <li><a href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">View in Google Maps</a></li>
             </ul>
         {{/rows}}
     </script>
