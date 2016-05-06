@@ -137,10 +137,6 @@
             var latestSpot = Sheetsee.ich.latestSpot({
                 rows: theLatestSpot
             })
-            // set it and pan to it
-            $('#latestSpot').html(latestSpot)
-            map.setView([theLatestSpot.lat, theLatestSpot.long], 14)
-
             // when someone clicks on a row, highlight it and
             // re-center the map
             // TODO show popup, change marker color
