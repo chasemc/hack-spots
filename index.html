@@ -76,9 +76,9 @@
     <script id="selectedSpot" type="text/html">
         {{#rows}}
             <h4 class="fauxButton">SELECTED SPONGE SAMPLE</h4>
-            <h2>{{name}}</h2>
-            <p class="colorText">{{address}}<p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <h2>{{sample}}</h2>
+            <p class="colorText">{{taxonomy}}<p>
+            <p class="colorText">{{place}}{{#state}}, {{club}}{{/state}}{{#postcode}}, {{number}}{{/postcode}}</p>
             
             <ul>
                 <li><a href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">View in Google Maps</a></li>
