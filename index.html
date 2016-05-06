@@ -55,7 +55,7 @@
 
     <script id="hackSpotsTable" type="text/html">
         <table>
-            <tr><th class="tHeader">Sample</th><th class="tHeader">Taxonomy</th><th class="tHeader">Place</th><th class="tHeader"Number</th><th class="">Google Maps</th></tr>
+            <tr><th class="tHeader">Sample</th><th class="tHeader">Taxonomy</th><th class="tHeader">Place</th><th class="tHeader"Diver Notes</th><th class="">Google Maps</th></tr>
             {{#rows}}
                 <tr id="{{rowNumber}}" class="spotRow"><td>{{sample}}</td><td>{{taxonomy}}</td><td>{{place}}</td><td>{{number}}</td><td><a class="button" href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">G Map</a> </td></tr>
             {{/rows}}
