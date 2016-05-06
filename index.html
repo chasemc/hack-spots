@@ -78,7 +78,7 @@
             <h4 class="fauxButton">SELECTED SPONGE SAMPLE</h4>
             <h2>{{sample}}</h2>
             <p class="colorText">{{taxonomy}}<p>
-            <p class="colorText">{{place}}{{#state}}, {{club}}{{/state}}{{#postcode}}, {{number}}{{/postcode}}</p>
+            <p class="colorText">{{place}}{{#state}}, {{club}}{{/club}}{{#postcode}}, {{number}}{{/number}}</p>
             
             <ul>
                 <li><a href="https://maps.google.com/maps?q={{lat}},{{long}}" target="_blank">View in Google Maps</a></li>
@@ -150,7 +150,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+                    if (!row.lat || !row.long || !row.sample || !row.taxonomy || !row.club || !row.place ) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
